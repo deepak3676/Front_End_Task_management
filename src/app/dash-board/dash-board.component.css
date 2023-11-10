@@ -1,0 +1,179 @@
+/* Container styles */
+.container2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+/* Navigation styles */
+.nav-tabs {
+  list-style-type: none;
+  display: flex;
+  background-color: #3498db; /* Material Design primary color */
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-tabs li {
+  float: left;
+}
+
+.nav-tabs a {
+  display: block;
+  color: rgb(1, 5, 14);
+  text-align: center;
+  padding: 12px 180px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.nav-tabs a:hover {
+  background-color: #2980b9; /* Darker shade on hover */
+}
+
+/* Content styles */
+.container1 {
+  margin: 20px;
+  background-color: #fff; /* White background for content */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Material Design shadow */
+}
+
+/* Button styles */
+.addUserButton {
+  background-color: #27ae60; /* Material Design accent color */
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.addUserButton:hover {
+  background-color: #218c53; /* Darker shade on hover */
+}
+
+/* Grid styles (adjust as needed) */
+kendo-grid {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Dialog styles (adjust as needed) */
+
+.k-dialog {
+  width: 800px; /* Adjust the max-width to your desired size */
+}
+
+
+.example-wrap {
+  padding: 20px;
+}
+
+.k-form {
+  font-family: 'Roboto', sans-serif; /* Use Roboto font for a Material Design look */
+}
+
+.k-form-fieldset {
+  border: none;
+}
+
+.k-form-legend {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Input styles */
+.k-textbox {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+/* Datepicker styles */
+.k-datepicker {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Form hint and error styles */
+.k-formhint,
+.k-formerror {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.8em;
+  color: #e74c3c; /* Material Design red for error */
+}
+
+/* Form button styles */
+.k-form-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.k-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.k-button.primary {
+  background-color: #3498db; /* Material Design primary color */
+  color: #fff;
+}
+
+.k-button.primary:hover {
+  background-color: #2980b9; /* Darker shade on hover */
+}
+
+/* Customize as needed for your application */
+/* Custom button styles */
+/* Custom button styles */
+.custom-button {
+  padding: 5px 10px;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid #3498db; /* Material Design primary color */
+  color: #4b4b4b;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.custom-button:hover {
+  background-color: #3498db;
+  color: #242222;
+}
+
+/* Edit button specific styles */
+.edit-button {
+  background-color: #27ae60; /* Material Design accent color for edit button */
+  border-color: #27ae60;
+}
+
+.edit-button:hover {
+  background-color: #218c53; /* Darker shade on hover */
+}
+
+/* Delete button specific styles */
+.delete-button {
+  background-color: #e74c3c; /* Material Design accent color for delete button */
+  border-color: #e74c3c;
+}
+
+.delete-button:hover {
+  background-color: #c0392b; /* Darker shade on hover */
+}

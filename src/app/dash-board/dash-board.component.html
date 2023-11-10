@@ -1,0 +1,186 @@
+<div class="container2">
+
+  <ul ngbNav #nav="ngbNav" class="nav-tabs">
+
+    <li ngbNavItem>
+      <a ngbNavLink class="one first">Tasks</a>
+      <ng-template ngbNavContent>
+        <div class="container1">
+          <button kendoButton (click)="openDialog()" class="addUserButton">Add user</button>
+          <kendo-grid [data]="tasks">
+            <kendo-grid-column field="" title="ID"> </kendo-grid-column>
+            <kendo-grid-column field="taskName" title="taskName"> </kendo-grid-column>
+            <kendo-grid-column field="taskDescription" title="taskDescription"> </kendo-grid-column>
+            <kendo-grid-column field="taskStartTime" title="startTime "> <ng-template kendoGridCellTemplate
+                let-dataItem>
+                {{ dataItem.taskStartTime | date:'yyyy-MM-dd' }}
+              </ng-template></kendo-grid-column>
+            <kendo-grid-column field="taskEndTime" title="endTime"> <ng-template kendoGridCellTemplate let-dataItem>
+                {{ dataItem.taskEndTime | date:'yyyy-MM-dd' }}
+              </ng-template> </kendo-grid-column>
+
+            <kendo-grid-column field="userId" title="userId"> </kendo-grid-column>
+            <kendo-grid-column title="Action">
+              <ng-template kendoGridCellTemplate let-dataItem>
+                <button (click)="editTask(dataItem)"
+                  class="edit-button custom-button"><span>Edit</span></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button (click)="deleteTask(dataItem.id)" class="delete-button custom-button">Delete</button>
+              </ng-template>
+            </kendo-grid-column>
+          </kendo-grid>
+        </div>
+      </ng-template>
+    </li>
+    <li ngbNavItem>
+      <a ngbNavLink class="two first">Get Started</a>
+      <ng-template ngbNavContent>
+
+      </ng-template>
+    </li>
+
+    <li ngbNavItem>
+      <a ngbNavLink class="final">{{userName}}</a>
+      <ng-template ngbNavContent>
+        User settings
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-2">
+
+  </div>
+
+
+
+
+
+
+  <kendo-dialog title='Add task' *ngIf="isDialogOpened" (close)="closeDialog()">
+    <div class="example-wrap">
+      <form class="k-form k-form-md" [formGroup]="taskDetails">
+        <fieldset class="k-form-fieldset">
+          <legend class="k-form-legend">Task Details</legend>
+          <kendo-formfield>
+            <input formControlName="taskName" kendoTextBox #taskName required />
+
+            <kendo-formhint>Task Title name</kendo-formhint>
+            <kendo-formerror>Error:Task is required</kendo-formerror>
+          </kendo-formfield>
+
+          <kendo-formfield>
+
+            <input formControlName="taskDescription" kendoTextBox #taskDescription required />
+
+            <kendo-formhint>Description </kendo-formhint>
+            <kendo-formerror>Error:Task is required</kendo-formerror>
+          </kendo-formfield>
+
+
+          <kendo-formfield>
+
+            <kendo-datepicker formControlName="taskStartTime" type="datetime" kendoDateInput [format]="'yyyy-MM-dd'"
+              [popupSettings]="popupSettings" #taskStartTime required></kendo-datepicker>
+
+            <kendo-formhint>Your startTime</kendo-formhint>
+            <kendo-formerror>Error: Not valid time format</kendo-formerror>
+          </kendo-formfield>
+
+          <kendo-formfield>
+
+            <kendo-datepicker formControlName="taskEndTime" [format]="'yyyy-MM-dd'" [popupSettings]="popupSettings"
+              #taskEndTime required></kendo-datepicker>
+
+            <kendo-formhint>Select endTime</kendo-formhint>
+            <kendo-formerror>Error: Not valid endTime format</kendo-formerror>
+          </kendo-formfield>
+
+          <div class="k-form-buttons">
+            <kendo-dialog-actions>
+
+              <button kendoButton themeColor="primary" *ngIf="!isEditOpen"
+                (click)="submitForm(taskDetails.value)">Submit</button>
+              <button kendoButton (click)="closeDialog()">Clear</button>
+            </kendo-dialog-actions>
+          </div>
+        </fieldset>
+      </form>
+
+
+    </div>
+
+
+  </kendo-dialog>
+
+
+
+  <kendo-dialog title='Edit task' *ngIf="isDialogOpened&& isEditOpen" (close)="closeDialog()">
+    <div class="example-wrap">
+      <form class="k-form k-form-md" [formGroup]="taskDetails">
+        <fieldset class="k-form-fieldset">
+          <legend class="k-form-legend">Task Details</legend>
+          <kendo-formfield>
+
+            <input formControlName="id" kendoTextBox [(ngModel)]="editId" #id required />
+
+            <kendo-formhint>Task Id</kendo-formhint>
+            <kendo-formerror>Error:Dont change Id</kendo-formerror>
+          </kendo-formfield>
+          <kendo-formfield>
+
+            <input formControlName="taskName" kendoTextBox [(ngModel)]="store1" #taskName required />
+
+            <kendo-formhint>Task Title name</kendo-formhint>
+            <kendo-formerror>Error:Task is required</kendo-formerror>
+          </kendo-formfield>
+
+          <kendo-formfield>
+
+            <input formControlName="taskDescription" [(ngModel)]="store2" kendoTextBox #taskDescription required />
+
+            <kendo-formhint>Description </kendo-formhint>
+            <kendo-formerror>Error:Task is required</kendo-formerror>
+          </kendo-formfield>
+
+
+          <kendo-formfield>
+
+            <kendo-datepicker formControlName="taskStartTime" type="datetime" kendoDateInput [format]="'yyyy-MM-dd'"
+              [value]="store3" [popupSettings]="popupSettings" #taskStartTime required></kendo-datepicker>
+
+            <kendo-formhint>Your startTime</kendo-formhint>
+            <kendo-formerror>Error: Not valid time format</kendo-formerror>
+          </kendo-formfield>
+
+          <kendo-formfield>
+
+            <kendo-datepicker formControlName="taskEndTime" [format]="'yyyy-MM-dd'" [popupSettings]="popupSettings"
+              #taskEndTime required></kendo-datepicker>
+
+            <kendo-formhint>Select endTime</kendo-formhint>
+            <kendo-formerror>Error: Not valid endTime format</kendo-formerror>
+          </kendo-formfield>
+          <kendo-formfield>
+
+            <input formControlName="userId" kendoTextBox [(ngModel)]="myuserId" #userId required />
+
+            <kendo-formhint>user Id</kendo-formhint>
+            <kendo-formerror>Error:Dont change Id</kendo-formerror>
+          </kendo-formfield>
+
+          <div class="k-form-buttons">
+            <kendo-dialog-actions>
+
+              <button kendoButton themeColor="primary" *ngIf="isEditOpen"
+                (click)="updateForm(taskDetails.value)">Update</button>
+              <button kendoButton (click)="closeDialog()">Clear</button>
+            </kendo-dialog-actions>
+          </div>
+        </fieldset>
+      </form>
+
+
+    </div>
+
+
+  </kendo-dialog>
+</div>
