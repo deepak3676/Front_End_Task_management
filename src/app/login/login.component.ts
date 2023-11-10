@@ -35,6 +35,7 @@ export class LoginComponent {
     }
 
     if (data) {
+      localStorage.setItem('userId',data.id)
       // User found, you can now proceed with the login logic
       localStorage.setItem('user', data.username);
       this.route.navigate(['/dashboard']);

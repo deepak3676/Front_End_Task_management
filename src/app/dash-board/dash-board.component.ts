@@ -10,11 +10,22 @@ import { PopupSettings } from "@progress/kendo-angular-dateinputs";
   styleUrls: ['./dash-board.component.css']
 })
 export class DashBoardComponent {
+
+  //variables
   isEditOpen: boolean = false;
   isDialogOpened: boolean = false;
   taskId: number = 0;
   tasks: any[] = [];
+  completedTasks: any[] = [];
+  userName: string = ''
+  myuserId: string = '';
+  editId: number = 0;
+  store1: string = "";
+  store2: string = "";
+  store3: Date = new Date('2000-01-01');
   taskDetails: FormGroup
+
+  //constructor
   constructor(private serve: TaskServiceService) {
     this.taskDetails = new FormGroup({
       id: new FormControl(),
@@ -24,21 +35,20 @@ export class DashBoardComponent {
       taskEndTime: new FormControl(new Date(), [Validators.required]),
       userId: new FormControl(),
     });
+    this.myuserId=(localStorage.getItem('userId')||'')
 
     this.reloadSite();
   }
+
+
+  //Functionality 
   deleteTask(data: number) {
     this.serve.delete(data).subscribe((result) => {
       this.reloadSite();
     })
 
   }
-  userName: string = ''
-  myuserId: number = 0;
-  editId: number = 0;
-  store1: string = "";
-  store2: string = "";
-  store3: Date = new Date('2000-01-01');
+ 
   editTask(task: any) {
 
     console.log(task);
@@ -51,13 +61,7 @@ export class DashBoardComponent {
     this.isDialogOpened = true;
     this.reloadSite();
   }
-  //ends here
-  reloadSite() {
-    this.serve.getTaskData().subscribe((result) => {
-      this.tasks = result as any;
-    })
-    this.userName = localStorage.getItem('user') || ''
-  }
+
   openDialog() {
     this.isDialogOpened = true;
   }
@@ -66,6 +70,8 @@ export class DashBoardComponent {
     this.isEditOpen = false;
     this.isDialogOpened = false;
   }
+
+
   updateForm(data: Task) {
     data.userId = 0;
     console.log(data);
@@ -75,6 +81,8 @@ export class DashBoardComponent {
     this.isDialogOpened = false;
     this.reloadSite();
   }
+
+
   submitForm(data: any) {
     debugger;
     data.id = 0;
@@ -96,9 +104,30 @@ export class DashBoardComponent {
     animate: false,
     popupClass: "crimson",
   };
+
+
   receiveId(dataId: number) {
 
   }
+
+
+  moveToCompleted(task: any){
+    const taskIndex = this.tasks.findIndex(t => t.id === task.id);
+    if (taskIndex !== -1) {
+      this.tasks.splice(taskIndex, 1);
+    }
+
+    this.completedTasks.push(task);
+  }
+
+    //Reload After every functionality
+    reloadSite() {
+      this.serve.getTaskData().subscribe((result) => {
+        
+        this.tasks = result as any;
+      })
+      this.userName = localStorage.getItem('user') || ''
+    }
 
 }
 

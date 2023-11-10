@@ -7,34 +7,75 @@
       <ng-template ngbNavContent>
         <div class="container1">
           <button kendoButton (click)="openDialog()" class="addUserButton">Add user</button>
-          <kendo-grid [data]="tasks">
-            <kendo-grid-column field="" title="ID"> </kendo-grid-column>
-            <kendo-grid-column field="taskName" title="taskName"> </kendo-grid-column>
-            <kendo-grid-column field="taskDescription" title="taskDescription"> </kendo-grid-column>
-            <kendo-grid-column field="taskStartTime" title="startTime "> <ng-template kendoGridCellTemplate
-                let-dataItem>
-                {{ dataItem.taskStartTime | date:'yyyy-MM-dd' }}
-              </ng-template></kendo-grid-column>
-            <kendo-grid-column field="taskEndTime" title="endTime"> <ng-template kendoGridCellTemplate let-dataItem>
-                {{ dataItem.taskEndTime | date:'yyyy-MM-dd' }}
-              </ng-template> </kendo-grid-column>
-
-            <kendo-grid-column field="userId" title="userId"> </kendo-grid-column>
-            <kendo-grid-column title="Action">
-              <ng-template kendoGridCellTemplate let-dataItem>
-                <button (click)="editTask(dataItem)"
-                  class="edit-button custom-button"><span>Edit</span></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button (click)="deleteTask(dataItem.id)" class="delete-button custom-button">Delete</button>
-              </ng-template>
-            </kendo-grid-column>
-          </kendo-grid>
+          
+          <table class="tableGrid">
+            <thead class="tableHead">
+              <tr>
+                <th>ID</th>
+                <th>Task Name</th>
+                <th>Task Description</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>User ID</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody class="tableData">
+              <tr *ngFor="let task of tasks">
+                <td>{{ task.id }}</td>
+                <td>{{ task.taskName }}</td>
+                <td>{{ task.taskDescription }}</td>
+                <td>{{ task.taskStartTime | date:'yyyy-MM-dd' }}</td>
+                <td>{{ task.taskEndTime | date:'yyyy-MM-dd' }}</td>
+                <td>{{ task.myuserId }}</td>
+                <td>
+                  <button (click)="editTask(task)" class="edit-button custom-button">
+                    <span>Edit</span>
+                  </button>
+                  <button (click)="deleteTask(task.id)" class="delete-button custom-button">
+                    Delete
+                  </button>
+                  <button (click)="moveToCompleted(task)" class="complete-button custom-button">
+                    Completed
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </ng-template>
     </li>
     <li ngbNavItem>
-      <a ngbNavLink class="two first">Get Started</a>
+      <a ngbNavLink class="two first">Completed</a>
       <ng-template ngbNavContent>
-
+        <div class="container1">
+          <table class="tableGrid">
+            <thead class="tableHead">
+              <tr>
+                <th>ID</th>
+                <th>Task Name</th>
+                <th>Task Description</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>User ID</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody class="tableData">
+              <tr *ngFor="let completedTask of completedTasks">
+                <td>{{ completedTask.id }}</td>
+                <td>{{ completedTask.taskName }}</td>
+                <td>{{ completedTask.taskDescription }}</td>
+                <td>{{ completedTask.taskStartTime | date:'yyyy-MM-dd' }}</td>
+                <td>{{ completedTask.taskEndTime | date:'yyyy-MM-dd' }}</td>
+                <td>{{ completedTask.myuserId }}</td>
+                <td>
+                  <!-- Add your action buttons here if needed -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </ng-template>
     </li>
 

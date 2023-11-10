@@ -145,35 +145,72 @@ kendo-grid {
   padding: 5px 10px;
   font-size: 14px;
   text-align: center;
+  margin-right: 5px;
   text-decoration: none;
   cursor: pointer;
-  border: 1px solid #3498db; /* Material Design primary color */
+  border: 1px solid #3498db; 
   color: #4b4b4b;
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .custom-button:hover {
+  
   background-color: #3498db;
   color: #242222;
-}
+} 
 
-/* Edit button specific styles */
 .edit-button {
-  background-color: #27ae60; /* Material Design accent color for edit button */
-  border-color: #27ae60;
+  background-color: #50ce84; 
+  border-color: #53cc85;
 }
 
 .edit-button:hover {
-  background-color: #218c53; /* Darker shade on hover */
+  background-color: #218c53; 
 }
-
-/* Delete button specific styles */
 .delete-button {
-  background-color: #e74c3c; /* Material Design accent color for delete button */
-  border-color: #e74c3c;
+  background-color: #ee6758;
+  border-color: #dd675a;
 }
 
 .delete-button:hover {
-  background-color: #c0392b; /* Darker shade on hover */
+  background-color: #c0392b; 
+} 
+
+/* Basic reset */
+body, div, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, code, em, img, small, strong, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
+
+/* Apply a border-collapse style to the table */
+.tableGrid {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Style for the table header */
+.tableHead {
+  background-color: #3498db; /* Header background color */
+  color: #ffffff; /* Header text color */
+}
+
+/* Style for the table data rows */
+.tableData tr:nth-child(even) {
+  background-color: #f2f2f2; /* Even row background color */
+}
+
+/* Hover effect for data rows */
+.tableData tr:hover {
+  background-color: #e0e0e0; /* Hover background color */
+}
+
+/* Style for cells in the table */
+.tableGrid th, .tableGrid td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #dddddd; /* Border color for cells */
+}
+
+/* Style for action buttons in the last column */
