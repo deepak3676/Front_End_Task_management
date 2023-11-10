@@ -22,6 +22,7 @@ export class DashBoardComponent {
   editId: number = 0;
   store1: string = "";
   store2: string = "";
+  isAnyTaskCompleted:boolean=false;
   store3: Date = new Date('2000-01-01');
   taskDetails: FormGroup
 
@@ -43,6 +44,7 @@ export class DashBoardComponent {
 
   //Functionality 
   deleteTask(data: number) {
+    this.isAnyTaskCompleted=false;
     this.serve.delete(data).subscribe((result) => {
       this.reloadSite();
     })
@@ -113,11 +115,15 @@ export class DashBoardComponent {
 
   moveToCompleted(task: any){
     const taskIndex = this.tasks.findIndex(t => t.id === task.id);
+
     if (taskIndex !== -1) {
       this.tasks.splice(taskIndex, 1);
+      this.isAnyTaskCompleted=true;
+      this.completedTasks.push(task);
+    } 
+    else {
+      console.log('No task completed.'); // Adjust this message as needed
     }
-
-    this.completedTasks.push(task);
   }
 
     //Reload After every functionality

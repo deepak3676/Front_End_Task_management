@@ -1,4 +1,23 @@
+<div class="navbar">
+  <div class="navbar-left">
+    <a href="/home">Home</a>
+    <a href="/dashboard">Tasks</a>
+  </div>
+  <div class="navbar-right">
+    <div class="user-profile">
+      <button class="profile-button">User Profile</button>
+      <div class="dropdown-content">
+        <a href="#">Profile</a>
+        <a href="#">Settings</a>
+        <a href="#">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container2">
+
+
 
   <ul ngbNav #nav="ngbNav" class="nav-tabs">
 
@@ -48,7 +67,10 @@
     <li ngbNavItem>
       <a ngbNavLink class="two first">Completed</a>
       <ng-template ngbNavContent>
-        <div class="container1">
+        <div class="norecord" *ngIf="!isAnyTaskCompleted">
+          No records available
+        </div>
+        <div class="container1" *ngIf="isAnyTaskCompleted">
           <table class="tableGrid">
             <thead class="tableHead">
               <tr>
@@ -70,7 +92,9 @@
                 <td>{{ completedTask.taskEndTime | date:'yyyy-MM-dd' }}</td>
                 <td>{{ completedTask.myuserId }}</td>
                 <td>
-                  <!-- Add your action buttons here if needed -->
+                  <button (click)="deleteTask(completedTask.id)" class="delete-button custom-button">
+                    Delete
+                  </button>
                 </td>
               </tr>
             </tbody>

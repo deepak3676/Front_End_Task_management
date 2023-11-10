@@ -10,7 +10,7 @@
 .nav-tabs {
   list-style-type: none;
   display: flex;
-  background-color: #3498db; /* Material Design primary color */
+  background-color: #3498db;
   border-radius: 5px;
   overflow: hidden;
   margin: 0;
@@ -31,21 +31,21 @@
 }
 
 .nav-tabs a:hover {
-  background-color: #2980b9; /* Darker shade on hover */
+  background-color: #2980b9;
 }
 
 /* Content styles */
 .container1 {
   margin: 20px;
-  background-color: #fff; /* White background for content */
+  background-color: #fff;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Material Design shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Button styles */
 .addUserButton {
-  background-color: #27ae60; /* Material Design accent color */
+  background-color: #27ae60;
   color: #fff;
   padding: 10px 20px;
   font-size: 16px;
@@ -56,7 +56,7 @@
 }
 
 .addUserButton:hover {
-  background-color: #218c53; /* Darker shade on hover */
+  background-color: #218c53;
 }
 
 /* Grid styles (adjust as needed) */
@@ -65,81 +65,7 @@ kendo-grid {
   margin-top: 20px;
 }
 
-/* Dialog styles (adjust as needed) */
-
-.k-dialog {
-  width: 800px; /* Adjust the max-width to your desired size */
-}
-
-
-.example-wrap {
-  padding: 20px;
-}
-
-.k-form {
-  font-family: 'Roboto', sans-serif; /* Use Roboto font for a Material Design look */
-}
-
-.k-form-fieldset {
-  border: none;
-}
-
-.k-form-legend {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-/* Input styles */
-.k-textbox {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  box-sizing: border-box;
-}
-
-/* Datepicker styles */
-.k-datepicker {
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-/* Form hint and error styles */
-.k-formhint,
-.k-formerror {
-  display: block;
-  margin-top: 5px;
-  font-size: 0.8em;
-  color: #e74c3c; /* Material Design red for error */
-}
-
-/* Form button styles */
-.k-form-buttons {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.k-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.k-button.primary {
-  background-color: #3498db; /* Material Design primary color */
-  color: #fff;
-}
-
-.k-button.primary:hover {
-  background-color: #2980b9; /* Darker shade on hover */
-}
-
 /* Customize as needed for your application */
-/* Custom button styles */
 /* Custom button styles */
 .custom-button {
   padding: 5px 10px;
@@ -148,69 +74,116 @@ kendo-grid {
   margin-right: 5px;
   text-decoration: none;
   cursor: pointer;
-  border: 1px solid #3498db; 
+  border: 1px solid #3498db;
   color: #4b4b4b;
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .custom-button:hover {
-  
   background-color: #3498db;
   color: #242222;
-} 
-
-.edit-button {
-  background-color: #50ce84; 
-  border-color: #53cc85;
 }
 
-.edit-button:hover {
-  background-color: #218c53; 
+.edit-button{
+  background-color: #43b87a;
+  border-color: #48be7f;
 }
 .delete-button {
   background-color: #ee6758;
   border-color: #dd675a;
 }
 
-.delete-button:hover {
-  background-color: #c0392b; 
-} 
-
-/* Basic reset */
-body, div, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, code, em, img, small, strong, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
-  margin: 0;
-  padding: 0;
-  border: 0;
+.edit-button:hover {
+  background-color: #218c53;
 }
 
-/* Apply a border-collapse style to the table */
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+/* Table styles */
 .tableGrid {
   width: 100%;
   border-collapse: collapse;
 }
 
-/* Style for the table header */
 .tableHead {
-  background-color: #3498db; /* Header background color */
-  color: #ffffff; /* Header text color */
+  background-color: #3498db;
+  color: #ffffff;
 }
 
-/* Style for the table data rows */
 .tableData tr:nth-child(even) {
-  background-color: #f2f2f2; /* Even row background color */
+  background-color: #f2f2f2;
 }
 
-/* Hover effect for data rows */
 .tableData tr:hover {
-  background-color: #e0e0e0; /* Hover background color */
+  background-color: #e0e0e0;
 }
 
-/* Style for cells in the table */
-.tableGrid th, .tableGrid td {
+.tableGrid th,
+.tableGrid td {
   padding: 10px;
   text-align: left;
-  border: 1px solid #dddddd; /* Border color for cells */
+  border: 1px solid #dddddd;
 }
 
-/* Style for action buttons in the last column */
+/* Navbar styles */
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+  padding: 15px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 14px 16px;
+  display: inline-block;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.user-profile {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 3;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.user-profile:hover .dropdown-content {
+  display: block;
+}

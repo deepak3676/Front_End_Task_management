@@ -24,7 +24,13 @@ export class LoginComponent {
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjeGx1d2p6bmJjb2JpaGhzZXN0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk0NDg4MjAsImV4cCI6MjAxNTAyNDgyMH0.SGP-7qA-eix2uvwSL3wJNO-VCJSTN4gaMy0j2KzWh2s';
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    const { data, error } = await supabase
+    
+    const { data, error } = await supabase.auth.signInWithPassword({
+    email: this.loginForm.value.useremail,
+    password: this.loginForm.value.password
+    })
+    if (data) {
+      const { data, error } = await supabase
       .from('usertable')
       .select()
       .eq('useremail', this.loginForm.value.useremail)
@@ -33,16 +39,12 @@ export class LoginComponent {
     if (error && (error as PostgrestError).code !== '23505') {
       console.error('Error fetching user:', error.message);
     }
-
-    if (data) {
       localStorage.setItem('userId',data.id)
-      // User found, you can now proceed with the login logic
       localStorage.setItem('user', data.username);
       this.route.navigate(['/dashboard']);
     }
     else {
-      // User not found or credentials are incorrect
-      console.log('Invalid credentials. Please try again.');
+      console.log('Invalid credentials. Please try again.'+error);
     }
   }
 }
