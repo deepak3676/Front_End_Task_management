@@ -1,0 +1,71 @@
+.page{
+    margin: 5%;
+}
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .show-grid-button {
+    cursor: pointer;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .grid-container {
+    margin-top: 20px;
+  }
+  
+  .tableGrid {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .tableHead th {
+    background-color: #333;
+    color: #fff;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .tableData td {
+    padding: 12px;
+  }
+  
+  .tableRow:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .custom-button {
+    cursor: pointer;
+    padding: 8px 16px;
+    margin: 4px;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .edit-button {
+    background-color: #4caf50;
+    color: #fff;
+  }
+  
+  .delete-button {
+    background-color: #f44336;
+    color: #fff;
+  }
+  
+  .complete-button {
+    background-color: #008CBA;
+    color: #fff;
+  }
+  

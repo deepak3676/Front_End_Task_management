@@ -1,8 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { Task } from '../dataType';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { TaskServiceService } from '../task-service.service';
 import { PopupSettings } from "@progress/kendo-angular-dateinputs";
+import { Router } from '@angular/router';
+import { DialogComponent } from '../dialog/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateDialogComponent } from '../update-dialog/update-dialog.component';
 
 @Component({
   selector: 'app-dash-board',
@@ -10,35 +15,25 @@ import { PopupSettings } from "@progress/kendo-angular-dateinputs";
   styleUrls: ['./dash-board.component.css']
 })
 export class DashBoardComponent {
-
-  //variables
-  isEditOpen: boolean = false;
-  isDialogOpened: boolean = false;
+ 
+  
   taskId: number = 0;
   tasks: any[] = [];
   completedTasks: any[] = [];
-  userName: string = ''
-  myuserId: string = '';
-  editId: number = 0;
-  store1: string = "";
-  store2: string = "";
+  isAdminLoggedIn=true;
   isAnyTaskCompleted:boolean=false;
-  store3: Date = new Date('2000-01-01');
-  taskDetails: FormGroup
-
+  store3: Date = new Date();
+  myuserName: string='';
+  userTaskBollean=false;
+  
+  materialDialog=false;
   //constructor
-  constructor(private serve: TaskServiceService) {
-    this.taskDetails = new FormGroup({
-      id: new FormControl(),
-      taskName: new FormControl(),
-      taskDescription: new FormControl(),
-      taskStartTime: new FormControl(new Date(), [Validators.required]),
-      taskEndTime: new FormControl(new Date(), [Validators.required]),
-      userId: new FormControl(),
-    });
-    this.myuserId=(localStorage.getItem('userId')||'')
-
+  constructor(private serve: TaskServiceService, private route : Router,private dialog:MatDialog) {
     this.reloadSite();
+  }
+
+  userTaskTab(){
+    this.userTaskBollean=true;
   }
 
 
@@ -52,88 +47,66 @@ export class DashBoardComponent {
   }
  
   editTask(task: any) {
-
-    console.log(task);
-    this.editId = task.id
-    this.store1 = task.taskName;
-    this.store2 = task.taskDescription;
-    this.store3 = task.taskStartTime;
-    this.myuserId = task.userId;
-    this.isEditOpen = true;
-    this.isDialogOpened = true;
-    this.reloadSite();
+  const dialogRef = this.dialog.open(UpdateDialogComponent, {
+ 
+    width: '400px',
+    data: {
+      data: task,
+      // Add more fields as needed
+    },
+  });
+  dialogRef.afterClosed().subscribe((result: any) => {
+    if (result) {
+      // Handle the result data (new project details)
+      console.log('New project data:', result);
+      const index=this.tasks.findIndex(p=>p.id===result.id)
+      if(index !== -1)
+      {
+        this.tasks[index]=result;
+      }
+      // You can add logic to save the new project data
+    }
+  });
   }
 
   openDialog() {
-    this.isDialogOpened = true;
-  }
-
-  closeDialog() {
-    this.isEditOpen = false;
-    this.isDialogOpened = false;
-  }
-
-
-  updateForm(data: Task) {
-    data.userId = 0;
-    console.log(data);
-
-    this.serve.putData(data).subscribe((result) => {
-    })
-    this.isDialogOpened = false;
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '400px',
+      data: {
+      },
+    });
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        // Handle the result data (new project details)
+        console.log('New project data:', result);
+        this.tasks.push(result);
+        // You can add logic to save the new project data
+      }
+    });
     this.reloadSite();
   }
 
-
-  submitForm(data: any) {
-    debugger;
-    data.id = 0;
-    data.userId = 0;
-    this.serve.addData(data).subscribe((result) => {
-
-      this.tasks.push(result);
-
-      this.isDialogOpened = false;
-    })
-
-  }
-  public kendokaAvatar =
-    "https://www.telerik.com/kendo-angular-ui-develop/components/navigation/appbar/assets/kendoka-angular.png";
-
-
-  public popupSettings: PopupSettings = {
-    appendTo: "component",
-    animate: false,
-    popupClass: "crimson",
-  };
-
-
-  receiveId(dataId: number) {
-
-  }
-
-
-  moveToCompleted(task: any){
-    const taskIndex = this.tasks.findIndex(t => t.id === task.id);
-
-    if (taskIndex !== -1) {
-      this.tasks.splice(taskIndex, 1);
-      this.isAnyTaskCompleted=true;
-      this.completedTasks.push(task);
-    } 
-    else {
-      console.log('No task completed.'); // Adjust this message as needed
-    }
-  }
-
+user:string=''
     //Reload After every functionality
     reloadSite() {
-      this.serve.getTaskData().subscribe((result) => {
-        
-        this.tasks = result as any;
-      })
-      this.userName = localStorage.getItem('user') || ''
+      if(localStorage.getItem('user')=='admin')
+      {
+        this.serve.getTaskData().subscribe((result) => {
+          this.tasks = result as any;
+        })
+      }
+      else{
+        this.isAdminLoggedIn=false;
+        this.user=localStorage.getItem('user')||'';
+        this.serve.getUserTasksDetails(this.user).subscribe((result)=>{
+          this.tasks=result as any;
+        })
+      }
+      
     }
+    
+
+    
 
 }
 

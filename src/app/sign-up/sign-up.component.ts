@@ -31,26 +31,30 @@ export class SignUpComponent {
     if (this.signupForm.valid) {
 
       try {
-
-        const { data, error } = await this.supabase.auth.signUp({
-          email: this.signupForm.value.email,
-          password: this.signupForm.value.password
-        })
-        if (error) {
-          alert(error);
+        const emailChecker= await this.supabase.from('usertable').select('*').eq('useremail',this.signupForm.value.email).single();
+        if(emailChecker.data){
+          alert('Email Already exist');
         }
-        else if (data) {
-
-          const { userName, email, password } = this.signupForm.value;
-          this.signUpToSupabase(userName, email, password);
-
-          this.route.navigate(['/login'])
+        else{
+          const { data, error } = await this.supabase.auth.signUp({
+            email: this.signupForm.value.email,
+            password: this.signupForm.value.password
+          })
+          if (error) {
+            alert(error);
+          }
+          else if (data) {
+  
+            const { userName, email, password } = this.signupForm.value;
+            this.signUpToSupabase(userName, email, password);
+  
+            this.route.navigate(['/login'])
+          }
         }
-      }
-      catch {
-        console.log("error");
-      }
-
+        }
+        catch {
+          console.log("error");
+        }
     }
   }
   async signUpToSupabase(username: string, useremail: string, password: string) {

@@ -4,5 +4,5 @@ export interface Task {
     taskDescription: string;
     taskStartTime: Date;
     taskEndTime: Date;
-    userId:number;
+    userName:string;
   }

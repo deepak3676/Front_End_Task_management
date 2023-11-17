@@ -17,7 +17,7 @@
   }
   
   p {
-    color: #555;
+    color: #000;
     font-size: 1.2em; /* Adjust the font size */
     margin-bottom: 20px;
   }
@@ -83,4 +83,3 @@
   .get-started-button {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
-  

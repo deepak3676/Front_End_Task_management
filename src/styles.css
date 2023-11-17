@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-
 html, body { height: 100%; }
 body { margin: 0; font-family: cursive; }
+/* Example CSS for setting z-index */
+.mat-dialog-container {
+    z-index: 1500; /* Adjust as needed */
+  }
+  
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

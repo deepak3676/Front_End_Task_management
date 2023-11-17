@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent {
-
+  constructor(private route:Router){
+    if(localStorage.getItem('user'))
+    {
+      route.navigate(['/dashboard'])
+    }
+  }
 }

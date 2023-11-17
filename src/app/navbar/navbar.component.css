@@ -1,0 +1,65 @@
+
+  /* Navbar styles */
+  .navbar {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px; /* Added padding for better spacing */
+  }
+  
+  .navbar-left a,
+  .navbar-right a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 16px;
+    display: inline-block;
+    position: relative; /* Added position relative for positioning the underline */
+  }
+  
+  .navbar-left a:hover,
+  .navbar-right a:hover {
+    color: #67708b; /* Changed hover color to green */
+  }
+  
+  .navbar-left a:hover::after,
+  .navbar-right a:hover::after {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #67708b; /* Underline color on hover */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .navbar-right button {
+    background-color: #67708b00;
+    color: white;
+    border: none;
+    margin: 10px;
+    font-size: 17px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Added transition for a smooth hover effect */
+  }
+  
+  .navbar-right button:hover {
+    background-color: #4CAF50; /* Change the background color on hover */
+  }
+  
+  
+  .user-profile {
+    display: inline-block;
+  }
+  
+  .profile-button {
+    background-color: #67708b;
+    color: white;
+    border: none;
+    margin: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 10px;
+  }

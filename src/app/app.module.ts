@@ -8,7 +8,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashBoardComponent } from './dash-board/dash-board.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GridModule } from '@progress/kendo-angular-grid';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http'
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
@@ -19,14 +19,25 @@ import { NavigationModule } from '@progress/kendo-angular-navigation';
 import { LayoutModule } from "@progress/kendo-angular-layout";
 import { IconsModule } from "@progress/kendo-angular-icons";
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
-
-import { IntlModule } from "@progress/kendo-angular-intl";
+import { DatePipe, IntlModule } from "@progress/kendo-angular-intl";
 
 import { MatTableModule } from '@angular/material/table';
+
+import { MatIconModule } from '@angular/material/icon';
+import { DialogComponent } from './dialog/dialog.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { DefaultPageComponent } from './default-page/default-page.component';
+import { MatSelectModule } from '@angular/material/select';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -35,32 +46,42 @@ import { HomePageComponent } from './home-page/home-page.component';
     LoginComponent,
     SignUpComponent,
     DashBoardComponent,
+    DialogComponent,
     HomePageComponent,
+    UpdateDialogComponent,
+    UserDetailsComponent,
+    DefaultPageComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     IntlModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatFormFieldModule,
     FormsModule,
     DateInputsModule,
+    MatSelectModule,
     BrowserAnimationsModule,
     LayoutModule,
     IconsModule,
+    MatDialogModule,
     ButtonsModule,
     MatTableModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,
     ReactiveFormsModule,
-    GridModule,
     HttpClientModule,
     DialogsModule,
     InputsModule,
     NavigationModule,
     DateInputsModule
   ],
-  providers: [],
+  providers: [DatePipe  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

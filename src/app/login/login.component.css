@@ -38,3 +38,38 @@ body {
 .center{
     text-align: center;
 }
+.error-message {
+  color: #ff0000; /* Red color for error messages */
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.signup-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.center {
+  text-align: center;
+}

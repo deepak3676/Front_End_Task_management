@@ -1,251 +1,36 @@
-<div class="navbar">
-  <div class="navbar-left">
-    <a href="/home">Home</a>
-    <a href="/dashboard">Tasks</a>
-  </div>
-  <div class="navbar-right">
-    <div class="user-profile">
-      <button class="profile-button">User Profile</button>
-      <div class="dropdown-content">
-        <a href="#">Profile</a>
-        <a href="#">Settings</a>
-        <a href="#">Logout</a>
-      </div>
-    </div>
-  </div>
-</div>
+<app-navbar></app-navbar>
+<div class="container1" >
+  <button (click)="openDialog()" class="addUserButton" >Add Task</button>
 
-<div class="container2">
-
-
-
-  <ul ngbNav #nav="ngbNav" class="nav-tabs">
-
-    <li ngbNavItem>
-      <a ngbNavLink class="one first">Tasks</a>
-      <ng-template ngbNavContent>
-        <div class="container1">
-          <button kendoButton (click)="openDialog()" class="addUserButton">Add user</button>
-          
-          <table class="tableGrid">
-            <thead class="tableHead">
-              <tr>
-                <th>ID</th>
-                <th>Task Name</th>
-                <th>Task Description</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>User ID</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody class="tableData">
-              <tr *ngFor="let task of tasks">
-                <td>{{ task.id }}</td>
-                <td>{{ task.taskName }}</td>
-                <td>{{ task.taskDescription }}</td>
-                <td>{{ task.taskStartTime | date:'yyyy-MM-dd' }}</td>
-                <td>{{ task.taskEndTime | date:'yyyy-MM-dd' }}</td>
-                <td>{{ task.myuserId }}</td>
-                <td>
-                  <button (click)="editTask(task)" class="edit-button custom-button">
-                    <span>Edit</span>
-                  </button>
-                  <button (click)="deleteTask(task.id)" class="delete-button custom-button">
-                    Delete
-                  </button>
-                  <button (click)="moveToCompleted(task)" class="complete-button custom-button">
-                    Completed
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </ng-template>
-    </li>
-    <li ngbNavItem>
-      <a ngbNavLink class="two first">Completed</a>
-      <ng-template ngbNavContent>
-        <div class="norecord" *ngIf="!isAnyTaskCompleted">
-          No records available
-        </div>
-        <div class="container1" *ngIf="isAnyTaskCompleted">
-          <table class="tableGrid">
-            <thead class="tableHead">
-              <tr>
-                <th>ID</th>
-                <th>Task Name</th>
-                <th>Task Description</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>User ID</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody class="tableData">
-              <tr *ngFor="let completedTask of completedTasks">
-                <td>{{ completedTask.id }}</td>
-                <td>{{ completedTask.taskName }}</td>
-                <td>{{ completedTask.taskDescription }}</td>
-                <td>{{ completedTask.taskStartTime | date:'yyyy-MM-dd' }}</td>
-                <td>{{ completedTask.taskEndTime | date:'yyyy-MM-dd' }}</td>
-                <td>{{ completedTask.myuserId }}</td>
-                <td>
-                  <button (click)="deleteTask(completedTask.id)" class="delete-button custom-button">
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </ng-template>
-    </li>
-
-    <li ngbNavItem>
-      <a ngbNavLink class="final">{{userName}}</a>
-      <ng-template ngbNavContent>
-        User settings
-      </ng-template>
-    </li>
-  </ul>
-
-  <div [ngbNavOutlet]="nav" class="mt-2">
-
-  </div>
-
-
-
-
-
-
-  <kendo-dialog title='Add task' *ngIf="isDialogOpened" (close)="closeDialog()">
-    <div class="example-wrap">
-      <form class="k-form k-form-md" [formGroup]="taskDetails">
-        <fieldset class="k-form-fieldset">
-          <legend class="k-form-legend">Task Details</legend>
-          <kendo-formfield>
-            <input formControlName="taskName" kendoTextBox #taskName required />
-
-            <kendo-formhint>Task Title name</kendo-formhint>
-            <kendo-formerror>Error:Task is required</kendo-formerror>
-          </kendo-formfield>
-
-          <kendo-formfield>
-
-            <input formControlName="taskDescription" kendoTextBox #taskDescription required />
-
-            <kendo-formhint>Description </kendo-formhint>
-            <kendo-formerror>Error:Task is required</kendo-formerror>
-          </kendo-formfield>
-
-
-          <kendo-formfield>
-
-            <kendo-datepicker formControlName="taskStartTime" type="datetime" kendoDateInput [format]="'yyyy-MM-dd'"
-              [popupSettings]="popupSettings" #taskStartTime required></kendo-datepicker>
-
-            <kendo-formhint>Your startTime</kendo-formhint>
-            <kendo-formerror>Error: Not valid time format</kendo-formerror>
-          </kendo-formfield>
-
-          <kendo-formfield>
-
-            <kendo-datepicker formControlName="taskEndTime" [format]="'yyyy-MM-dd'" [popupSettings]="popupSettings"
-              #taskEndTime required></kendo-datepicker>
-
-            <kendo-formhint>Select endTime</kendo-formhint>
-            <kendo-formerror>Error: Not valid endTime format</kendo-formerror>
-          </kendo-formfield>
-
-          <div class="k-form-buttons">
-            <kendo-dialog-actions>
-
-              <button kendoButton themeColor="primary" *ngIf="!isEditOpen"
-                (click)="submitForm(taskDetails.value)">Submit</button>
-              <button kendoButton (click)="closeDialog()">Clear</button>
-            </kendo-dialog-actions>
-          </div>
-        </fieldset>
-      </form>
-
-
-    </div>
-
-
-  </kendo-dialog>
-
-
-
-  <kendo-dialog title='Edit task' *ngIf="isDialogOpened&& isEditOpen" (close)="closeDialog()">
-    <div class="example-wrap">
-      <form class="k-form k-form-md" [formGroup]="taskDetails">
-        <fieldset class="k-form-fieldset">
-          <legend class="k-form-legend">Task Details</legend>
-          <kendo-formfield>
-
-            <input formControlName="id" kendoTextBox [(ngModel)]="editId" #id required />
-
-            <kendo-formhint>Task Id</kendo-formhint>
-            <kendo-formerror>Error:Dont change Id</kendo-formerror>
-          </kendo-formfield>
-          <kendo-formfield>
-
-            <input formControlName="taskName" kendoTextBox [(ngModel)]="store1" #taskName required />
-
-            <kendo-formhint>Task Title name</kendo-formhint>
-            <kendo-formerror>Error:Task is required</kendo-formerror>
-          </kendo-formfield>
-
-          <kendo-formfield>
-
-            <input formControlName="taskDescription" [(ngModel)]="store2" kendoTextBox #taskDescription required />
-
-            <kendo-formhint>Description </kendo-formhint>
-            <kendo-formerror>Error:Task is required</kendo-formerror>
-          </kendo-formfield>
-
-
-          <kendo-formfield>
-
-            <kendo-datepicker formControlName="taskStartTime" type="datetime" kendoDateInput [format]="'yyyy-MM-dd'"
-              [value]="store3" [popupSettings]="popupSettings" #taskStartTime required></kendo-datepicker>
-
-            <kendo-formhint>Your startTime</kendo-formhint>
-            <kendo-formerror>Error: Not valid time format</kendo-formerror>
-          </kendo-formfield>
-
-          <kendo-formfield>
-
-            <kendo-datepicker formControlName="taskEndTime" [format]="'yyyy-MM-dd'" [popupSettings]="popupSettings"
-              #taskEndTime required></kendo-datepicker>
-
-            <kendo-formhint>Select endTime</kendo-formhint>
-            <kendo-formerror>Error: Not valid endTime format</kendo-formerror>
-          </kendo-formfield>
-          <kendo-formfield>
-
-            <input formControlName="userId" kendoTextBox [(ngModel)]="myuserId" #userId required />
-
-            <kendo-formhint>user Id</kendo-formhint>
-            <kendo-formerror>Error:Dont change Id</kendo-formerror>
-          </kendo-formfield>
-
-          <div class="k-form-buttons">
-            <kendo-dialog-actions>
-
-              <button kendoButton themeColor="primary" *ngIf="isEditOpen"
-                (click)="updateForm(taskDetails.value)">Update</button>
-              <button kendoButton (click)="closeDialog()">Clear</button>
-            </kendo-dialog-actions>
-          </div>
-        </fieldset>
-      </form>
-
-
-    </div>
-
-
-  </kendo-dialog>
+  <table class="tableGrid">
+    <thead class="tableHead">
+      <tr>
+        <th>ID</th>
+        <th>Task Name</th>
+        <th>Task Description</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th *ngIf="isAdminLoggedIn">User Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody class="tableData">
+      <tr *ngFor="let task of tasks ; let i =index">
+        <td>{{ i +1 }}</td>
+        <td>{{ task.taskName }}</td>
+        <td>{{ task.taskDescription }}</td>
+        <td>{{ task.taskStartTime | date:'yyyy-MM-dd' }}</td>
+        <td>{{ task.taskEndTime | date:'yyyy-MM-dd' }}</td>
+        <td *ngIf="isAdminLoggedIn" >{{task.userName}}</td>
+        <td>
+          <button (click)="editTask(task)" class="edit-button custom-button">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button (click)="deleteTask(task.id)" class="delete-button custom-button">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
