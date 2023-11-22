@@ -32,7 +32,19 @@ export class DialogComponent {
   }
 
   async loadUsernames() {
-    this.users = await this.getAllUsernames();
+    const isAdmin = localStorage.getItem('user') === 'admin';
+    
+    if (isAdmin) {
+      this.users = await this.getAllUsernames();
+    } else {
+      const currentUser = localStorage.getItem('user');
+      // If not admin, set the current user as the only option
+      this.users = [{ value: currentUser, viewValue: currentUser }];
+      // Set the initial value of the "userName" form control
+      this.taskDetails.patchValue({ userName: currentUser });
+      // Disable the dropdown for non-admin users
+      this.taskDetails.get('userName')
+    }
   }
   onSaveClick(data: any) {
 
@@ -65,8 +77,14 @@ export class DialogComponent {
   
     const usernames = users.map(user => ({ value: user.username, viewValue: user.username }));
     console.log(usernames);
-  
-    return usernames;
+    if (localStorage.getItem('user') === 'admin') {
+      this.users = usernames;
+    } else {
+      // If not admin, set the current user
+      this.users = [localStorage.getItem('user')];
+    }
+
+    return this.users;
   }
   
 

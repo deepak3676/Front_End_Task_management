@@ -29,44 +29,58 @@ export class SignUpComponent {
 
   async onSubmit() {
     if (this.signupForm.valid) {
-
       try {
-        const emailChecker= await this.supabase.from('usertable').select('*').eq('useremail',this.signupForm.value.email).single();
-        if(emailChecker.data){
-          alert('Email Already exist');
-        }
-        else{
+        // Check if the email already exists
+        const emailChecker = await this.supabase
+          .from('usertable')
+          .select('*')
+          .eq('useremail', this.signupForm.value.email)
+          .single();
+
+        // Check if the username already exists
+        const usernameChecker = await this.supabase
+          .from('usertable')
+          .select('*')
+          .eq('username', this.signupForm.value.userName)
+          .single();
+
+        if (emailChecker.data) {
+          alert('Email Already exists');
+        } else if (usernameChecker.data) {
+          alert('Username Already exists');
+        } else {
           const { data, error } = await this.supabase.auth.signUp({
             email: this.signupForm.value.email,
-            password: this.signupForm.value.password
-          })
+            password: this.signupForm.value.password,
+          });
+
           if (error) {
-            alert(error);
-          }
-          else if (data) {
-  
+            alert(error.message);
+          } else if (data) {
             const { userName, email, password } = this.signupForm.value;
             this.signUpToSupabase(userName, email, password);
-  
-            this.route.navigate(['/login'])
+            this.route.navigate(['/login']);
           }
         }
-        }
-        catch {
-          console.log("error");
-        }
+      } catch {
+        console.log('error');
+      }
     }
   }
+
   async signUpToSupabase(username: string, useremail: string, password: string) {
-    // Use your Supabase project URL and API key
+    try {
+      // Call the Supabase insert method to store user data in a table
+      const { data, error } = await this.supabase
+        .from('usertable')
+        .insert([{ username, useremail, password }])
+        .select();
 
-    // Call the Supabase insert method to store user data in a table
-    const { data, error } = await this.supabase
-      .from('usertable')
-      .insert([
-        { username: username, useremail: useremail, password: password },
-      ])
-      .select()
-
+      if (error) {
+        console.error('Error inserting data into usertable:', error.message);
+      }
+    } catch (error) {
+      console.error('Error signing up to Supabase:');
+    }
   }
 }

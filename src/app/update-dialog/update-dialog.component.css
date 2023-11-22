@@ -1,0 +1,53 @@
+/* Add this CSS to your component's style file or your global styles */
+
+/* Adjust margin and padding for better spacing */
+.mat-dialog-container {
+    padding: 20px;
+  }
+  
+  /* Add some space between form fields */
+  mat-form-field {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  /* Style the buttons */
+  .mat-dialog-actions {
+    justify-content: flex-end; /* Align buttons to the right */
+    margin-top: 20px; /* Add some space between content and buttons */
+  }
+  
+  /* Style the cancel button */
+  button[mat-button][aria-label="Close dialog"] {
+    color: #757575; /* Change the color to a muted tone */
+  }
+  
+  /* Style the save button */
+  button[mat-button][aria-label="Save"] {
+    background-color: #4caf50; /* Green color */
+    color: #fff; /* White text */
+  }
+  
+  /* Optional: Style the dialog title */
+  .mat-dialog-title {
+    font-size: 1.5em;
+    color: #333;
+  }
+  
+  /* Optional: Style the form labels */
+  .mat-form-field-label {
+    color: #333;
+  }
+  
+  /* Optional: Style the form inputs */
+  .mat-input-element {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+  }
+  
+  /* Optional: Style the select dropdown */
+  mat-select {
+    width: 100%;
+  }
+  

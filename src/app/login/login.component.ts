@@ -50,10 +50,8 @@ export class LoginComponent {
         localStorage.setItem('userEmail',data.useremail);
         this.route.navigate(['/default']);
       }
-
     }
     else {
-      
       console.log('Invalid credentials. Please try again.' + error);
     }
   }

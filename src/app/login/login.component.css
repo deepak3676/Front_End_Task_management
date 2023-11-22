@@ -1,75 +1,99 @@
-body {
-    
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    text-align: center;
-  }
-
-  .login-container {
-
-    margin: 10% 35% ;
-    max-width: 400px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0px 0px 5px 0px #ccc;
-  }
-
-  input[type="email"], input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-
-  button {
-    background-color: #3498db;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: #2980b9;
-  }
-.center{
-    text-align: center;
+/* Reset some default styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-.error-message {
-  color: #ff0000; /* Red color for error messages */
-  font-size: 0.8rem;
-  margin-top: 4px;
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
-.signup-container {
-  max-width: 400px;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: #4CAF50;
+}
+
+.error-message {
+  color: #FF0000;
+  font-size: 14px;
+  margin-top: 5px;
 }
 
 button {
-  background-color: #4caf50;
-  color: white;
+  background-color: #4CAF50;
+  color: #fff;
   padding: 10px 15px;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 button:hover {
   background-color: #45a049;
 }
 
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+
 .center {
   text-align: center;
+}
+
+/* Optional: Add a subtle animation to the form */
+.login-container {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

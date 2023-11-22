@@ -11,7 +11,7 @@
         <th>Start Time</th>
         <th>End Time</th>
         <th *ngIf="isAdminLoggedIn">User Name</th>
-        <th>Action</th>
+        <th *ngIf="isAdminLoggedIn">Action</th>
       </tr>
     </thead>
     <tbody class="tableData">
@@ -22,7 +22,7 @@
         <td>{{ task.taskStartTime | date:'yyyy-MM-dd' }}</td>
         <td>{{ task.taskEndTime | date:'yyyy-MM-dd' }}</td>
         <td *ngIf="isAdminLoggedIn" >{{task.userName}}</td>
-        <td>
+        <td *ngIf="isAdminLoggedIn">
           <button (click)="editTask(task)" class="edit-button custom-button">
             <mat-icon>edit</mat-icon>
           </button>

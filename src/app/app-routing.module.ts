@@ -14,7 +14,7 @@ import { DefaultPageComponent } from './default-page/default-page.component';
 const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
   {path:'home',component:HomePageComponent},
-  { path: 'dashboard', component: DashBoardComponent,canActivate:[authGuard] },
+  { path: 'dashboard', component: DashBoardComponent,canActivate:[authGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'signUp', component: SignUpComponent },
   {path:'dialog',component:DialogComponent},

@@ -7,6 +7,9 @@
       <div *ngIf="loginForm.get('useremail')?.hasError('required') && loginForm.get('useremail')?.touched" class="error-message">
         Email is required
       </div>
+      <div *ngIf="loginForm.get('useremail')?.hasError('email') && !loginForm.get('useremail')?.hasError('required') && loginForm.get('useremail')?.touched" class="error-message">
+        Invalid email format
+      </div>
     </div>
     <div class="form-group">
       <label for="password">Password:</label>

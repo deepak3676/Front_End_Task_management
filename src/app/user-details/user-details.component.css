@@ -1,71 +1,80 @@
-.page{
-    margin: 5%;
+/* Add this CSS to your styles.css (or styles.scss) file */
+
+.page {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
+
 .dialog-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .form-field {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .show-grid-button {
-    cursor: pointer;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  .grid-container {
-    margin-top: 20px;
-  }
-  
-  .tableGrid {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .tableHead th {
-    background-color: #333;
-    color: #fff;
-    padding: 12px;
-    text-align: left;
-  }
-  
-  .tableData td {
-    padding: 12px;
-  }
-  
-  .tableRow:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .custom-button {
-    cursor: pointer;
-    padding: 8px 16px;
-    margin: 4px;
-    border: none;
-    border-radius: 4px;
-  }
-  
-  .edit-button {
-    background-color: #4caf50;
-    color: #fff;
-  }
-  
-  .delete-button {
-    background-color: #f44336;
-    color: #fff;
-  }
-  
-  .complete-button {
-    background-color: #008CBA;
-    color: #fff;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+mat-label {
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.show-grid-button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.show-grid-button:hover {
+  background-color: #2980b9;
+}
+
+.grid-container {
+  margin-top: 20px;
+}
+
+.tableGrid {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.tableHead,
+.tableData {
+  background-color: #cbdae4;
+  color: #000000;
+}
+
+.tableHead th,
+.tableData td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #2980b9;
+}
+
+.tableData td {
+  transition: background 0.3s;
+}
+
+.tableData tr:hover {
+  background-color: #3498db;
+  color: #fff;
+}

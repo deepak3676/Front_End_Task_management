@@ -49,7 +49,7 @@ export class DashBoardComponent {
   editTask(task: any) {
   const dialogRef = this.dialog.open(UpdateDialogComponent, {
  
-    width: '400px',
+    width: '600px',
     data: {
       data: task,
       // Add more fields as needed
