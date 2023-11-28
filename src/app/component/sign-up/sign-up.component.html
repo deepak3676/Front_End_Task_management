@@ -1,0 +1,67 @@
+<div class="signup-container">
+  <h2>Sign Up</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="form-group"
+      [ngClass]="{'has-error': signupForm.get('userName')?.invalid && signupForm.get('userName')?.touched}">
+      <label for="userName">User Name:
+        <span class="required-asterisk"
+          *ngIf="(signupForm.get('userName')?.invalid) && signupForm.get('userName')?.touched">*</span>
+      </label>
+      <input type="text" id="userName" formControlName="userName" required>
+      <div *ngIf="signupForm.get('userName')?.hasError('required') && signupForm.get('userName')?.touched"
+        class="error-message">
+        User Name is required
+      </div>
+      <div *ngIf=" !signupForm.get('userName')?.hasError('required') && signupForm.get('userName')?.invalid && signupForm.get('userName')?.touched"
+        class="error-message">
+        *Note:- User Name must be 2 to 10 characters long and cannot have spaces
+      </div>
+    </div>
+
+
+    <div class="form-group"
+      [ngClass]="{'has-error': signupForm.get('email')?.invalid && signupForm.get('email')?.touched}">
+      <label for="email">Email:
+        <span class="required-asterisk"
+          *ngIf="signupForm.get('email')?.hasError('required') && signupForm.get('email')?.touched">*</span>
+        <span class="required-asterisk"
+          *ngIf="(signupForm.get('email')?.hasError('email')||signupForm.get('email')?.hasError('invalidEmail')) && !signupForm.get('email')?.hasError('required') && signupForm.get('email')?.touched">*</span>
+      </label>
+      <input type="email" id="email" formControlName="email" required>
+
+      <div *ngIf="signupForm.get('email')?.hasError('required') && signupForm.get('email')?.touched"
+        class="error-message">
+        Email is required
+      </div>
+      <div
+        *ngIf="(signupForm.get('email')?.hasError('invalidEmail') || signupForm.get('email')?.hasError('email')) && !signupForm.get('email')?.hasError('required') && signupForm.get('email')?.touched"
+        class="error-message">
+        Invalid email format
+      </div>
+    </div>
+    <div class="form-group"
+      [ngClass]="{'has-error': signupForm.get('password')?.hasError('required') && signupForm.get('password')?.touched}">
+      <label for="password">Password:
+        <span class="required-asterisk"
+          *ngIf="signupForm.get('password')?.hasError('required') && signupForm.get('password')?.touched">*</span>
+      </label>
+      <input type="password" id="password" formControlName="password" required>
+      <div *ngIf="signupForm.get('password')?.hasError('required') && signupForm.get('password')?.touched"
+        class="error-message">
+        Password is required
+      </div>
+      <div class="note"
+        *ngIf="!signupForm.get('password')?.hasError('required') && signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+        *Note:- The password must have one 8 letter including one number and one special character
+      </div>
+    </div>
+    <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+
+
+    <div class="center">
+      <br>
+      Already have an account<br>
+      <button routerLink="/login">Log In</button>
+    </div>
+  </form>
+</div>

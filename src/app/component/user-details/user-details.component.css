@@ -1,0 +1,99 @@
+.page {
+  max-width: 1000px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+mat-label {
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.show-grid-button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.show-grid-button:hover {
+  background-color: #2980b9;
+}
+
+.grid-container {
+  margin-top: 20px;
+}
+
+.tableGrid {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #3498db; /* Add border color */
+}
+
+.tableHead,
+.tableData {
+  background-color: #cbdae4;
+  color: #000000;
+}
+
+.tableHead th,
+.tableData td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #2980b9;
+}
+
+.tableData td {
+  transition: background 0.3s;
+}
+
+.tableData tr:hover {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.custom-button {
+  background-color: #2980b9;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.custom-button:hover {
+  background-color: #34495e;
+}
+
+/* Optional: Add a subtle box-shadow to buttons for a 3D effect */
+.custom-button:active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

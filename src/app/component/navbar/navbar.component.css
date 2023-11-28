@@ -1,0 +1,105 @@
+/* Resetting some default styles for better consistency */
+body, h1, h2, p, ul, li, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* Applying styles to the navbar container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #9849bd; /* Change this to your desired background color */
+  padding: 15px;
+  border-radius: 0px 0px 40px 40px ;
+  color: white; /* Change this to your desired text color */
+}
+
+/* Styles for the left side of the navbar */
+.navbar-left {
+  display: flex;
+}
+
+/* Styles for the navbar links with 3D effect */
+.navbar-left a {
+  text-decoration: none;
+  color: white; /* Change this to your desired link color */
+  margin-right: 20px; /* Adjust the spacing between links */
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s, transform 0.3s;
+}
+
+/* 3D effect on navbar item hover */
+.navbar-left a:hover {
+  text-decoration: none;
+  color: #8ac9e6; /* Change this to your desired hover color */
+  transform: translateY(-2px);
+}
+
+.navbar-left a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: white; /* Change this to your desired underline color */
+  transition: width 0.3s;
+}
+
+.navbar-left a:hover::after {
+  width: 100%;
+}
+
+/* Styles for the right side of the navbar */
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Styles for the buttons with 3D effect */
+.logout-button, .profile-button {
+  background: none;
+  border: none;
+  color: white; /* Change this to your desired button text color */
+  cursor: pointer;
+  margin-left: 20px; /* Adjust the spacing between buttons */
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s, transform 0.3s;
+}
+
+/* 3D effect on button hover */
+.logout-button:hover, .profile-button:hover {
+  color: #8ac9e6; /* Change this to your desired hover color */
+  transform: translateY(-2px);
+}
+
+/* Additional styling for the logout button */
+.logout-button img {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+/* 3D effect on button click */
+.logout-button:active, .profile-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .navbar-left, .navbar-right {
+    width: 100%;
+  }
+
+  .navbar-left a, .logout-button, .profile-button {
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+  }
+}

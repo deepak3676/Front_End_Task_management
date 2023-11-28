@@ -1,0 +1,13 @@
+<div class="navbar">
+  <div class="navbar-left">
+    <a routerLink="/default">Home</a>
+    <a routerLink="/dashboard">Tasks</a>
+    <a routerLink="/userDetails" *ngIf="loggedIn">User Tasks</a>
+  </div>
+  <div class="navbar-right">
+    <button (click)="logOut()" class="logout-button">
+      <img src="../../assets/images/logout.png" height="15px" style="vertical-align: middle;"> LogOut
+    </button>
+    <button class="profile-button">{{userName}}</button>
+  </div>
+</div>

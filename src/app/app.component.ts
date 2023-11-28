@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TaskServiceService } from './task-service.service';
-import { Task } from './dataType';
+import { TaskServiceService } from './services/task-service.service';
+import { Task } from './model/dataType';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,0 +1,100 @@
+/* home.component.css */
+
+.home-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  h1 {
+    padding: 5% 20%;
+    color: #223363;
+    font-size: 3em; /* Adjust the font size */
+    text-align: center;
+  }
+  
+  p {
+    color: #000;
+    font-size: 1.2em; /* Adjust the font size */
+    margin-bottom: 20px;
+  }
+  
+  .get-started-button {
+    background-color: #2196F3; /* Set your desired button color */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px; /* Set a border radius to round the corners */
+    position: relative;
+  }
+  
+  .get-started-button:before {
+    content: "";
+    position: absolute;
+    width: 50px; /* Adjust the width of the cloud shape */
+    height: 20px; /* Adjust the height of the cloud shape */
+    background-color: white;
+    border-radius: 50%;
+    top: -10px;
+    left: -25px; /* Adjust the position of the cloud shape */
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+  
+  
+  .get-started-button:hover {
+    background-color: #218c53;
+  }
+  
+  /* background.component.css */
+  
+  :host {
+    display: block;
+    width: 100%;
+    min-height: 100vh; /* Full viewport height */
+    background-image: url('https://i0.wp.com/picjumbo.com/wp-content/uploads/ecology-love-heart-tree-with-space-for-text-free-photo.jpg?w=600&quality=80');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .background-container {
+    color: white;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(201, 201, 201, 0); /* Semi-transparent background */
+    border-radius: 10px;
+    max-width: 600px; /* Limit the maximum width of the content */
+    margin: 0 auto; /* Center the content horizontally */
+  }
+  :root {
+    --primary-color: #3498db;
+    --secondary-color: #27ae60;
+    --text-color: #555;
+  }
+  
+  p {
+    font-size: 1.4em;
+  }
+  
+  .get-started-button {
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .get-started-button:hover {
+    background-color: darken(var(--secondary-color), 10%);
+    transform: scale(1.1);
+  }
+  
+  .background-container {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .get-started-button {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }

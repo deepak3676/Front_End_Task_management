@@ -3,14 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DashBoardComponent } from './dash-board/dash-board.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http'
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { InputsModule } from '@progress/kendo-angular-inputs';
@@ -24,20 +21,26 @@ import { DatePipe, IntlModule } from "@progress/kendo-angular-intl";
 import { MatTableModule } from '@angular/material/table';
 
 import { MatIconModule } from '@angular/material/icon';
-import { DialogComponent } from './dialog/dialog.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
-import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
-import { UserDetailsComponent } from './user-details/user-details.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { DefaultPageComponent } from './default-page/default-page.component';
+
 import { MatSelectModule } from '@angular/material/select';
-import { NavbarComponent } from './navbar/navbar.component';
+import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
+import { HomePageComponent } from './component/home-page/home-page.component';
+import { UpdateDialogComponent } from './component/update-dialog/update-dialog.component';
+import { UserDetailsComponent } from './component/user-details/user-details.component';
+import { DefaultPageComponent } from './component/default-page/default-page.component';
+import { DialogComponent } from './component/dialog/dialog.component';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { LoginComponent } from './component/login/login.component';
+import { SignUpComponent } from './component/sign-up/sign-up.component';
+import { DashBoardComponent } from './component/dash-board/dash-board.component';
 
 
 @NgModule({
@@ -58,6 +61,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     AppRoutingModule,
     NgbModule,
     IntlModule,
+    MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
@@ -65,6 +69,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     FormsModule,
     DateInputsModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
     BrowserAnimationsModule,
     LayoutModule,
     IconsModule,
@@ -81,7 +87,12 @@ import { NavbarComponent } from './navbar/navbar.component';
     NavigationModule,
     DateInputsModule
   ],
-  providers: [DatePipe  ],
+  providers: [
+    DatePipe,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
